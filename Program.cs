@@ -32,7 +32,7 @@ namespace Assignment3
     }
     internal class Program
     {
-        private static void Start()
+        private static void Main()
         {
             Console.WriteLine("| WELCOME TO INVENTORY SYSTEM |\n" + breakline);
             Console.WriteLine("| PLEASE SELECT Y(START) or N(EXIT)|: ");
@@ -40,7 +40,7 @@ namespace Assignment3
             input = input.ToUpper();
             if (input == "Y")
             {
-                Main();
+                MainMenu(); 
             }
             else if (input == "N")
             {
@@ -49,7 +49,7 @@ namespace Assignment3
             else
             {
                 Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
-                Start();
+                MainMenu();
             }
         }
         private static void Menu()
@@ -58,7 +58,7 @@ namespace Assignment3
             string input = Console.ReadLine()?.ToUpper();
             if (input == "Y") // if Y or y will convert to uppercase so if Y execute Main()
             {
-                Main();
+                MainMenu();
             }
             else if (input == "N")
             {
@@ -72,7 +72,7 @@ namespace Assignment3
             }
         }
         private static List<string> itNum = new List<string>();
-        public static string breakline { get; set; } = "";
+        public static string breakline { get; set; } = "───────────────────────────────────────────────";
         private static string GenerateItemNum()
         { string numBer;
             do
@@ -84,8 +84,8 @@ namespace Assignment3
             return numBer;
         }
         private static void AddProduct()
-        {
-            Console.WriteLine(breakline + "\n-------------- ADD NEW ITEM--------------\n" + breakline);
+        {                                    
+            Console.WriteLine(breakline + "\n|                 ADD NEW ITEM                |\n" + breakline);
             Console.WriteLine("This function to add Items\n" + "existing Item number/Auto Generate Item Number for New Items\n");
 
             //Ask for input from "user in each variable
@@ -144,8 +144,8 @@ namespace Assignment3
             Console.WriteLine("✅ New Item add to system \n " + breakline);
         }
         public static void FindItemNumber()
-        {
-            Console.WriteLine(breakline + "\n-------------- SEARCH ITEMS -------------- \n" + "This page use Item Number As Indicator"
+        {                                    
+            Console.WriteLine(breakline +"\n|                 SEARCH ITEMS                 |\n" + breakline + "\nThis page use Item Number As Indicator"
             + "\nItem Number Characteristic is 4 digits [0-9]{4}$\n" + breakline);
             Console.WriteLine("This function use Item Number (XXXX) for reference");
             Console.WriteLine("Please Enter Item Number 4 digits :");
@@ -173,12 +173,12 @@ namespace Assignment3
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error Catched");
+                Console.WriteLine("Error Catched: " + ex.Message);
             }
         }
         public static void Listprice()
         {
-            Console.WriteLine(breakline + "\n-------------- List Inventory Price -------------- \n" + "Instruction\n" +
+            Console.WriteLine(breakline + "\n|                 List Inventory Price                 |\n" + breakline + "\nInstruction\n" +
             "When execute this function will lists all items in the inventory \nthat price below or equal to preference Price preference price format XX.XX");
             Console.WriteLine("Please Enter your preference price: ");
 
@@ -206,6 +206,10 @@ namespace Assignment3
                         found = true;
                     }
                 }
+            }
+            if(!found)
+            {
+                Console.WriteLine("|❌ INVALID : not found item matched ... reference|");
             }
             Menu();
         }
@@ -240,12 +244,14 @@ namespace Assignment3
         private static void Range()
         {
             string filepath = "videogames.txt";
-            double Highprice = double.MaxValue;
-            double Lowprice = double.MinValue;
+            double Highprice = double.MinValue;  // Changed from MaxValue to MinValue
+            double Lowprice = double.MaxValue;   // Changed from MinValue to MaxValue
+            string Highline = "";
+            string Lowline = "";
+            
             using StreamReader reader3 = new StreamReader(filepath);
-            string line = reader3.ReadLine();
-            string Highline = line;
-            string Lowline = line;
+            string line;
+            
             while ((line = reader3.ReadLine()) != null)
             {
                 string[] part = line.Split(",");
@@ -254,23 +260,31 @@ namespace Assignment3
                     if (price > Highprice)
                     {
                         Highprice = price;
-                        line = Highline;
+                        Highline = line;  // Fixed variable assignment
                     }
-                    else if (price < Lowprice)
+                    if (price < Lowprice)  // Changed to if instead of else if
                     {
                         Lowprice = price;
-                        line = Lowline;
+                        Lowline = line;   // Fixed variable assignment
                     }
                 }
-                Console.WriteLine("Inventory Price Range : \n" +
+            }
+            
+            // Moved outside the loop and added validation
+            if (!string.IsNullOrEmpty(Highline) && !string.IsNullOrEmpty(Lowline))
+            {
+                Console.WriteLine(breakline+"Inventory Price Range  \n" +
                 $"Highest price in the inventory is : {Highline}\n" +
                 $"Lowest price in the inventory is : {Lowline}");
-
+            }
+            else
+            {
+                Console.WriteLine("|❌ INVALID : No items found in inventory|");
             }
         }
         private static void Analyst()
         {
-            Console.WriteLine(breakline + "-------------- Inventory Analysis --------------\n" + "Please Select Function to start Analyse\n" +
+            Console.WriteLine(breakline + "\n|                INVENTORY ANALYST              |\n" + breakline + "Please Select Function to start Analyse\n" +
             "A. Average Inventory Price\n" +
             "B. Inventory Price Range Lowest - Highest Price");
             Console.WriteLine("Please Select between A or B : ");
@@ -295,13 +309,17 @@ namespace Assignment3
             }
         }
 
-        private static void Main()
+        private static void MainMenu()
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.ForegroundColor = ConsoleColor.White;
-            Start();
-            Console.WriteLine("| MAIN MENU |" + "\n| DIRECTORIES |\n");
-            Console.WriteLine("| 1. ➕Add Product |\n" + "| 2. 🔎 Search Inventory |\n" + "| 3. 👀Product Lookup |\n" + "| 4. 📊Product Analysis |\n" + breakline);
+            Console.WriteLine("───────────────────────────────────────────────");
+            Console.WriteLine("|                 MAIN MENU                    |\n" +
+                              "|                Directories                   |\n" +
+                              "|           1➕Add Product                    |\n" +
+                              "|           2🔎Search Inventory               |\n" +
+                              "|           3👀Product Lookup                 |\n" +
+                              "|           4📊Product Analysis               |\n" + breakline);
             Console.WriteLine("| Please Enter 1-5 to Navigate to Function Page : |");
             string inPut = Console.ReadLine();
             Console.WriteLine($"You Entered :  + {inPut}");
