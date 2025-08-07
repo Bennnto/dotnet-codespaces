@@ -67,7 +67,7 @@ namespace Assignment3
             }
             else if (input == "N")
             {
-                Console.WriteLine("Thank you for using the GameStore System. Goodbye!");
+                Console.WriteLine("Thank you for using the Inventory System. Goodbye!");
                 Environment.Exit(0);
             }
             else
@@ -237,22 +237,22 @@ namespace Assignment3
                     Acc += price; // acc = acc + price 
                     i++; // I + 1 in each iteration
                 }
-                if (i > 0)
-                {
-                    average = Acc / i; //find average = accumulate / amount of data / item in list
-                    Console.WriteLine(breakline + $"\n| AVERAGE PRICE > The Average Inventory Price is : {average} |");
-                }
-                else
-                {
-                    Console.WriteLine("\n|❌ INVALID : not found item matched ... reference|");
-                }
             }
+            if (i > 0)
+            {
+                average = Acc / i; //find average = accumulate / amount of data / item in list
+                Console.WriteLine(breakline + $"\n| AVERAGE PRICE > The Average Inventory Price is : {average} |");
+            } else
+            {
+                Console.WriteLine("\n|❌ INVALID : not found item matched ... reference|");
+            }
+            
         }
         private static void Range()
         {
             string filepath = "videogames.txt";
-            double Highprice = double.MaxValue;  
-            double Lowprice = double.MinValue;   
+            double Aprice = double.MinValue; // Initialize to lowest possible value
+            double Bprice = double.MaxValue;  // Initialize to highest possible value
             string Highline = "";
             string Lowline = "";
             
@@ -264,21 +264,21 @@ namespace Assignment3
                 string[] part = line.Split(",");
                 if (part.Length >= 4 && double.TryParse(part[2], out double price))
                 {
-                    if (price > Highprice) // price now tracks the highest price
+                    if (price > Aprice) // price now tracks the highest price
                     {
-                        Highprice = price;
+                        Aprice = price;
                         Highline = line;  // Fixed variable assignment to show in result of this method
                     }
-                    if (price < Lowprice)  // Changed to if instead of else if
+                    if (price < Bprice)  // Changed to if instead of else if
                     {
-                        Lowprice = price;
+                        Bprice = price;
                         Lowline = line;   // Fixed variable assignment to show in result of this method
                     }
                 }
             }
 
             // Moved outside the loop and added validation
-            if (Highprice != double.MinValue && Lowprice != double.MaxValue)
+            if (Aprice != double.MinValue && Bprice != double.MaxValue)
             {
                 Console.WriteLine(breakline + "\n| PRICE RANGE > The Inventory Price Range |\n" +
                 $"| Highest price in the inventory is : {Highline} |\n" +
