@@ -142,7 +142,7 @@ namespace Assignment3
             stockQuantity = int.Parse(Console.ReadLine());  
             Console.WriteLine("Item Quantity is :" + stockQuantity + "📦");
             var newGame = new Game(itemNumber, itemName, price, userRating, stockQuantity); // create new object game and rearrange all element 
-            Console.WriteLine("| ✅ ADD > NEW ITEM 🎮 : new item added to the inventory... >\n" + newGame);
+            Console.WriteLine("\n| ✅ ADD > NEW ITEM 🎮 : new item added to the inventory... >\n" + newGame);
             string Line = newGame.ToString(); // use public class method change all variable in game to string before store to .txt file 
             string filepath = "videogames.txt"; // initialized filepath to videogames.txt 
             using (StreamWriter writer = new StreamWriter(filepath, append: true)) // use stream writer
@@ -170,13 +170,13 @@ namespace Assignment3
                     if (lines.StartsWith(NumberRef + ",")) // search line that start with number ref follow with "," delimeter)
                     {
                         found = true; // found match set found = true
-                        Console.WriteLine(breakline + $"| ITEM > {lines} |"); // display line matched 
+                        Console.WriteLine(breakline + $"\n| ITEM > {lines} |"); // display line matched 
                         break;
                     }
                 }
                 if (!found) // found = false
                 {
-                    Console.WriteLine("|❌ INVALID : not found item matched ... reference|");
+                    Console.WriteLine("\n|❌ INVALID : not found item matched ... reference|");
                 }
             }
             catch (Exception ex) //catch to display error message ex
@@ -192,11 +192,11 @@ namespace Assignment3
 
             if (double.TryParse(Console.ReadLine(), out double prefprice)) // this use try parse to check input validity
             {
-                Console.WriteLine($"| REFERENCE > 📄 PRICE REFERENCE : your reference price is : {prefprice} |");
+                Console.WriteLine($"\n| REFERENCE > 📄 PRICE REFERENCE : your reference price is : {prefprice} |");
             }
             else
             {
-                Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
+                Console.WriteLine("\n|❌ INVALID : invalid input ... Please Try Again|");
                 return;
             }
             bool found = false;
@@ -210,14 +210,14 @@ namespace Assignment3
                 {
                     if (price <= prefprice) // show and list all the item price below or equal to pref price
                     {
-                        Console.WriteLine(breakline + $"| ITEM > {line} |");
+                        Console.WriteLine(breakline + $"\n| ITEM > {line} |");
                         found = true;
                     }
                 }
             }
             if(!found)
             {
-                Console.WriteLine("|❌ INVALID : not found item matched ... reference|");
+                Console.WriteLine("\n|❌ INVALID : not found item matched ... reference|");
             }
             Menu();
         }
@@ -226,7 +226,7 @@ namespace Assignment3
             string filepath = "videogames.txt"; //intitalized file path to videogames.txt
             using StreamReader reader2 = new StreamReader(filepath);
             string line;
-            double Acc=0; // set accumulator for total price
+            double Acc = 0; // set accumulator for total price
             double average; // initialized average variable 
             int i = 0; // set i to find average 
             while ((line = reader2.ReadLine()) != null)
@@ -236,18 +236,18 @@ namespace Assignment3
                 {
                     Acc += price; // acc = acc + price 
                     i++; // I + 1 in each iteration
-            }
-            if (i > 0)
-            {
-                average = Acc / i; //find average = accumulate / amount of data / item in list
-                Console.WriteLine(breakline + $"| AVERAGE PRICE > The Average Inventory Price is : {average} |");
-            }
-            else
-            {
-                Console.WriteLine("|❌ INVALID : not found item matched ... reference|");
+                }
+                if (i > 0)
+                {
+                    average = Acc / i; //find average = accumulate / amount of data / item in list
+                    Console.WriteLine(breakline + $"\n| AVERAGE PRICE > The Average Inventory Price is : {average} |");
+                }
+                else
+                {
+                    Console.WriteLine("\n|❌ INVALID : not found item matched ... reference|");
+                }
             }
         }
-
         private static void Range()
         {
             string filepath = "videogames.txt";
@@ -280,7 +280,7 @@ namespace Assignment3
             // Moved outside the loop and added validation
             if (Highprice != double.MinValue && Lowprice != double.MaxValue)
             {
-                Console.WriteLine(breakline + "| PRICE RANGE > The Inventory Price Range |\n" +
+                Console.WriteLine(breakline + "\n| PRICE RANGE > The Inventory Price Range |\n" +
                 $"| Highest price in the inventory is : {Highline} |\n" +
                 $"| Lowest price in the inventory is : {Lowline} |");
             }

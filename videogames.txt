@@ -1,3 +1,5 @@
-2257,12,53,5
-4711,Hello Mario,29.99,5
-5485,Mario Kart,49.99,5
+3074,Mario ,29.99,5,30
+4785,sudoku,20,5,20
+4118,gameboy advandced ,59.99,5,20
+2881,Luigi Mansion 3 ,49.5,5,20
+1451,Super Mario,20.5,5,50
