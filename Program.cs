@@ -48,7 +48,7 @@ namespace Assignment3
             }
             else
             {
-                Console.WriteLine("|❌ Invalid : invalid input ... Please Try Again|");
+                Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
                 Start();
             }
         }
@@ -104,7 +104,7 @@ namespace Assignment3
                     Console.WriteLine("Your Item Number input validated");
                 }
                 else {
-                    Console.WriteLine("|❌ Invalid : invalid input ... Please Try Again|");
+                    Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
                     itemNumber = GenerateItemNum();
                 }
             }
@@ -125,7 +125,7 @@ namespace Assignment3
                 userRating = int.Parse(Console.ReadLine());
                 if (userRating < 0 || userRating > 5)
                 {
-                    Console.WriteLine("|❌ Invalid : invalid rating input ... please try again|");
+                    Console.WriteLine("|❌ INVALID : invalid rating input ... please try again|");
                 }
             } while (userRating < 0 || userRating > 5);
             Console.WriteLine("Item Rating is :" + userRating);
@@ -188,7 +188,7 @@ namespace Assignment3
             }
             else
             {
-                Console.WriteLine("|❌ Invalid : invalid input ... Please Try Again|");
+                Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
                 return;
             }
             bool found = false;
@@ -233,7 +233,7 @@ namespace Assignment3
             }
             else
             {
-                Console.WriteLine("|❌ Invalid : not found item matched ... reference|");
+                Console.WriteLine("|❌ INVALID : not found item matched ... reference|");
             }
         }
 
@@ -289,7 +289,7 @@ namespace Assignment3
                     Menu();
                     break;
                 default:
-                    Console.WriteLine("|❌ Invalid : invalid input ... Please Try Again|");
+                    Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
                     Analyst();
                     break;
             }
@@ -324,7 +324,7 @@ namespace Assignment3
                     Menu();
                     break;
                 default:
-                    Console.WriteLine("|❌ Invalid : invalid input ... Please Try Again|");
+                    Console.WriteLine("|❌ INVALID : invalid input ... Please Try Again|");
                     Main();
                     break;
             }
