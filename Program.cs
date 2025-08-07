@@ -271,9 +271,9 @@ namespace Assignment3
             }
             
             // Moved outside the loop and added validation
-            if (!string.IsNullOrEmpty(Highline) && !string.IsNullOrEmpty(Lowline))
+            if (Highprice != double.MinValue && Lowprice != double.MaxValue)
             {
-                Console.WriteLine(breakline+"Inventory Price Range  \n" +
+                Console.WriteLine(breakline + "Inventory Price Range  \n" +
                 $"Highest price in the inventory is : {Highline}\n" +
                 $"Lowest price in the inventory is : {Lowline}");
             }
