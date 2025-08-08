@@ -159,6 +159,7 @@ namespace Assignment3
             Console.WriteLine("Please Enter Item Number 4 digits :");
             var NumberRef = Console.ReadLine();
             Console.WriteLine($"| REFERENCE > 📄 ITEM NUMBER REFERENCE : your reference item number is : {NumberRef} |");
+            Console.WriteLine("\n| SEARCH ITEM > ⏱ HOLD ON : system retrieving data ... |")
             string filepath = "videogames.txt"; // initialized filepath to videogames.txt
             bool found = false; // found false to open loop and will set it true after found match 
             try
@@ -199,6 +200,7 @@ namespace Assignment3
                 Console.WriteLine("\n|❌ INVALID : invalid input ... Please Try Again|");
                 return;
             }
+            Console.WriteLine("\n| LIST PRICE > ⏱ HOLD ON : system retrieving data ... |")
             bool found = false;
             string filepath = "videogames.txt"; //initialized filepath to videogames.txt
             using StreamReader reader1 = new StreamReader(filepath);
