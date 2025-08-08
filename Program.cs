@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Design;
+using System.ComponentModel.Design;
 using System.Dynamic;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
@@ -251,8 +251,8 @@ namespace Assignment3
         private static void Range()
         {
             string filepath = "videogames.txt";
-            double Aprice = double.MinValue; // Initialize to lowest possible value
-            double Bprice = double.MaxValue;  // Initialize to highest possible value
+            double Highest = double.MinValue; // Initialize to lowest possible value to compare with all value that possible so it will substitute with all high price until highest
+            double Lowest = double.MaxValue;  // Initialize to highest possible value to compare and substitute with lowest value in list
             string Highline = "";
             string Lowline = "";
             
@@ -264,21 +264,21 @@ namespace Assignment3
                 string[] part = line.Split(",");
                 if (part.Length >= 4 && double.TryParse(part[2], out double price))
                 {
-                    if (price > Aprice) // price now tracks the highest price
+                    if (price > Highest) // price now tracks the highest price
                     {
-                        Aprice = price;
+                        Highest = price;
                         Highline = line;  // Fixed variable assignment to show in result of this method
                     }
-                    if (price < Bprice)  // Changed to if instead of else if
+                    if (price < Lowest)  // Changed to if instead of else if
                     {
-                        Bprice = price;
+                        Lowest = price;
                         Lowline = line;   // Fixed variable assignment to show in result of this method
                     }
                 }
             }
 
             // Moved outside the loop and added validation
-            if (Aprice != double.MinValue && Bprice != double.MaxValue)
+            if (Highest != double.MinValue && Lowest != double.MaxValue)
             {
                 Console.WriteLine(breakline + "\n| PRICE RANGE > The Inventory Price Range |\n" +
                 $"| Highest price in the inventory is : {Highline} |\n" +
